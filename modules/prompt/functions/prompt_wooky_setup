@@ -55,8 +55,8 @@ function prompt_wooky_setup {
 
   # Set editor-info parameters.
   zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary' format '%(?: %B%F{green}❯%f: %F{red}❯%f)%b'
-  zstyle ':prezto:module:editor:info:keymap:alternate' format '%(?: %B%F{yellow}❮%f: %F{red}❮%f)%b'
+  zstyle ':prezto:module:editor:info:keymap:primary' format '%(?: %B%F{green}>%f: %F{red}>%f)%b'
+  zstyle ':prezto:module:editor:info:keymap:alternate' format '%(?: %B%F{yellow}<%f: %F{red}>%f)%b'
 
   # Set git-info parameters.
   zstyle ':prezto:module:git:info' verbose 'yes'
