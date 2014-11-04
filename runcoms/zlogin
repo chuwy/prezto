@@ -22,7 +22,8 @@ fi
 
 # Print a random, hopefully interesting, adage.
 if (( $+commands[fortune] )); then
-  fortune -a
-  print
+  if [[ -t 0 || -t 1 ]]; then
+    fortune -a
+    print
+  fi
 fi
-
