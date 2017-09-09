@@ -21,16 +21,30 @@ zstyle ':prezto:load' pmodule \
   'archive' \
   'git' \
   'python' \
-  'node' \
-  'gpg' \
   'terminal' \
   'editor' \
   'history' \
-  'directory' \
   'spectrum' \
   'utility' \
   'completion' \
   'prompt'
+
+# Default preferences. Bring back if something go wrong with above
+# zstyle ':prezto:load' pmodule \
+#   'environment' \
+#   'archive' \
+#   'git' \
+#   'python' \
+#   'node' \
+#   'gpg' \
+#   'terminal' \
+#   'editor' \
+#   'history' \
+#   'directory' \
+#   'spectrum' \
+#   'utility' \
+#   'completion' \
+#   'prompt'
 
 #
 # Editor
