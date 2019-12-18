@@ -39,6 +39,24 @@ function prompt_wooky_precmd {
   fi
 }
 
+# nix-shell: taken from https://gist.github.com/chisui/0d12bd51a5fd8e6bb52e6e6a43d31d5e
+prompt_nix_shell() {
+  if [[ -n "$IN_NIX_SHELL" ]]; then
+    if [[ -n $NIX_SHELL_PACKAGES ]]; then
+      local package_names=""
+      local packages=($NIX_SHELL_PACKAGES)
+      for package in $packages; do
+        package_names+=" ${package##*.}"
+      done
+      _prompt_wooky_nix=$package_names
+    else
+      local cleanName=${name#interactive-}
+      cleanName=${cleanName%-environment}
+      _prompt_wooky_nix="%F{${HOST_COLOR:-cyan}}$cleanName "
+    fi
+  fi
+}
+
 function prompt_wooky_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
@@ -49,6 +67,7 @@ function prompt_wooky_setup {
 
   # Add hook for calling precmd before each command.
   add-zsh-hook precmd prompt_wooky_precmd
+  add-zsh-hook precmd prompt_nix_shell
 
   # Set python-info parameters.
   zstyle ':prezto:module:python:info:virtualenv' format ' %v'
@@ -79,7 +98,7 @@ function prompt_wooky_setup {
 
   # Define prompts.
   PROMPT='%F{${HOST_COLOR:-cyan}}${_prompt_wooky_pwd}%f${git_info:+${(e)git_info[prompt]}}${editor_info[keymap]} '
-  RPROMPT='${git_info[rprompt]}$python_info[virtualenv] %F{green}${_wooky_time}%f'
+  RPROMPT='${git_info[rprompt]} ${_prompt_wooky_nix}%F{green}${_wooky_time}%f'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
 
